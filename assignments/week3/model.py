@@ -3,7 +3,9 @@ from typing import Callable
 
 
 class LinearBlock(torch.nn.Module):
-    def __init__(self, in_features, out_features, activation):
+    def __init__(
+        self, in_features: int, out_features: int, activation: Callable
+    ) -> None:
         """
         Initialize the linear block.
         Args:
@@ -16,7 +18,7 @@ class LinearBlock(torch.nn.Module):
         self.activation = activation()
         self.batch_norm = torch.nn.BatchNorm1d(out_features)
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
         Forward pass of the linear block.
         Args:
@@ -29,6 +31,10 @@ class LinearBlock(torch.nn.Module):
 
 
 class MLP(torch.nn.Module):
+    """
+    A simple multi-layer perceptron.
+    """
+
     def __init__(
         self,
         input_size: int,
@@ -36,7 +42,7 @@ class MLP(torch.nn.Module):
         num_classes: int,
         hidden_count: int = 1,
         activation: Callable = torch.nn.ReLU,
-        initializer: Callable = torch.nn.init.ones_,
+        initializer: Callable = torch.nn.init.kaiming_normal_,
     ) -> None:
         """
         Initialize the MLP.
@@ -74,7 +80,7 @@ class MLP(torch.nn.Module):
                 if m.bias is not None:
                     torch.nn.init.zeros_(m.bias)
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
         Forward pass of the network.
 
