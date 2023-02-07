@@ -1,7 +1,6 @@
 import torch
 from model import MLP
 
-
 def create_model(input_dim: int, output_dim: int) -> MLP:
     """
     Create a multi-layer perceptron model.
@@ -15,4 +14,5 @@ def create_model(input_dim: int, output_dim: int) -> MLP:
         MLP: The created model.
 
     """
-    return MLP(input_dim, 32, output_dim, 1, torch.nn.ReLU, torch.nn.init.ones_)
+    return MLP(input_dim, [1024, 2048, 1024, 256], output_dim, torch.nn.GELU,
+               torch.nn.init.kaiming_normal_)
