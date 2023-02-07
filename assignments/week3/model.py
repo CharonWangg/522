@@ -9,7 +9,7 @@ class LinearBlock(torch.nn.Module):
         Args:
             in_features: The number of input features.
             out_features: The number of output features.
-            activation: The activation function to use.
+            activation: The activation function to use
         """
         super(LinearBlock, self).__init__()
         self.linear = torch.nn.Linear(in_features, out_features)
