@@ -2,7 +2,6 @@ import numpy as np
 
 
 class LinearRegression:
-
     w: np.ndarray
     b: float
 
