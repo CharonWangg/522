@@ -32,8 +32,9 @@ class MLP(torch.nn.Module):
     def __init__(
             self,
             input_size: int,
-            hidden_size: list,
+            hidden_size: int,
             num_classes: int,
+            hidden_count: int = 1,
             activation: Callable = torch.nn.ReLU,
             initializer: Callable = torch.nn.init.ones_,
     ) -> None:
@@ -42,7 +43,7 @@ class MLP(torch.nn.Module):
 
         Arguments:
             input_size: The dimension D of the input data.
-            hidden_size: The list of number of neurons H in the each hidden layer.
+            hidden_size: The number of neurons H in the hidden layer.
             num_classes: The number of classes C.
             activation: The activation function to use in the hidden layer.
             initializer: The initializer to use for the weights.
@@ -50,13 +51,13 @@ class MLP(torch.nn.Module):
         super(MLP, self).__init__()
         self.initializer = initializer
         layers = []
-        for i in range(len(hidden_size)):
+        for i in range(hidden_count):
             if i == 0:
-                layers.append(LinearBlock(input_size, hidden_size[i], activation))
+                layers.append(LinearBlock(input_size, hidden_size, activation))
             else:
-                layers.append(LinearBlock(hidden_size[i - 1], hidden_size[i], activation))
+                layers.append(LinearBlock(hidden_size, hidden_size, activation))
 
-        layers += [torch.nn.Dropout(0.3), torch.nn.Linear(hidden_size[-1], num_classes)]
+        layers += [torch.nn.Dropout(0.3), torch.nn.Linear(hidden_size, num_classes)]
         self.layers = torch.nn.Sequential(*layers)
         self._initialize_weights(initializer)
 

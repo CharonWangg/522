@@ -14,5 +14,5 @@ def create_model(input_dim: int, output_dim: int) -> MLP:
         MLP: The created model.
 
     """
-    return MLP(input_dim, [1024, 2048, 1024, 256], output_dim, torch.nn.GELU,
+    return MLP(input_dim, 1024, output_dim, 3, torch.nn.GELU,
                torch.nn.init.kaiming_normal_)
