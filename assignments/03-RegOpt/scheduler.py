@@ -4,6 +4,10 @@ from torch.optim.lr_scheduler import _LRScheduler
 
 
 class CustomLRScheduler(_LRScheduler):
+    """
+    Custom learning rate scheduler.
+    """
+
     def __init__(self, optimizer, max_iters, min_lr=0.0, last_epoch=-1):
         """
         Cosine learning rate scheduler.
@@ -19,12 +23,12 @@ class CustomLRScheduler(_LRScheduler):
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
     def get_lr(self) -> List[float]:
-        # Note to students: You CANNOT change the arguments or return type of
-        # this function (because it is called internally by Torch)
+        """
+        Get the learning rate.
 
-        # ... Your Code Here ...
-        # Here's our dumb baseline implementation:
-        # write a cosine learning rate scheduler
+        Returns:
+            current_lrs (List[float]): The current learning rates.
+        """
         current_lrs = []
         for base_lr in self.base_lrs:
             current_lr = (

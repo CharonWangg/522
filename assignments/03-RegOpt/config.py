@@ -2,20 +2,14 @@ from typing import Callable
 import torch
 import torch.optim
 import torch.nn as nn
-from torchvision.transforms import (
-    Compose,
-    Normalize,
-    ToTensor,
-    RandomHorizontalFlip,
-    RandomCrop,
-)
+from torchvision.transforms import Compose, Normalize, ToTensor
 
 
 class CONFIG:
     batch_size = 64
-    num_epochs = 20
-    initial_learning_rate = 3e-3
-    initial_weight_decay = 0.05
+    num_epochs = 10
+    initial_learning_rate = 2e-3
+    initial_weight_decay = 0.0005
 
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
