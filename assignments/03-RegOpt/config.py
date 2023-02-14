@@ -15,12 +15,12 @@ class CONFIG:
         # You can pass arguments to the learning rate scheduler
         # constructor here.
         "max_iters": num_epochs
-        * 782
+        * 800
     }
 
     optimizer_factory: Callable[
         [nn.Module], torch.optim.Optimizer
-    ] = lambda model: torch.optim.AdamW(
+    ] = lambda model: torch.optim.Adam(
         model.parameters(),
         lr=CONFIG.initial_learning_rate,
         weight_decay=CONFIG.initial_weight_decay,
